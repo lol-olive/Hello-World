@@ -1,27 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <title>Hello World</title>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCWP_NvCHcF8Y3cA_Rp5NN-iLlRie1Z8i0"></script>
     </head>
     <body>
         <div id="landing">
             <button id="goBtn">Hello World</button>
-          </div>
-        
-          <div id="result" style="display: none;">
-            <p>You clicked it. A location will go here.</p>
-          </div>
-        
-          <script>
-            const btn = document.getElementById('goBtn');
-            const landing = document.getElementById('landing');
-            const result = document.getElementById('result');
-        
-            btn.addEventListener('click', () => {
-              landing.style.display = 'none';
-              result.style.display = 'block';
+        </div>
+
+        <div
+            id="result"
+            style="display: none; width: 100%; height: 100vh" 
+        ></div>
+
+        <script>
+            const btn = document.getElementById("goBtn");
+            const landing = document.getElementById("landing");
+            const result = document.getElementById("result");
+
+            btn.addEventListener("click", () => {
+                landing.style.display = "none";
+                result.style.display = "block";
+
+            const svService = new google.maps.StreetViewService();
+            const testLocation = { lat: 48.8584, lng: 2.2945 }; // eiffel tower
+
+            svService.getPanorama({ location: testLocation, radius: 50 }, (data, status) => {
+                if (status === "OK") {
+                  new google.maps.StreetViewPanorama(result, {
+                    pano: data.location.pano
+                  });
+                } else {
+                  result.innerHTML = "<p>No panorama available for this location.</p>";
+                }
             });
-          </script>
+        });
+        </script>
     </body>
 </html>
