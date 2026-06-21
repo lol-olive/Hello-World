@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Hello World</title>
-    <style>
-    body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-        background-color: #ffffff;
-        }
-    </style>
-</head>
-<body>
-<h1><tt>Hello World!</tt></h1>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+        <div id="landing">
+            <button id="goBtn">Hello World</button>
+          </div>
+        
+          <div id="result" style="display: none;">
+            <p>You clicked it. A location will go here.</p>
+          </div>
+        
+          <script>
+            const btn = document.getElementById('goBtn');
+            const landing = document.getElementById('landing');
+            const result = document.getElementById('result');
+        
+            btn.addEventListener('click', () => {
+              landing.style.display = 'none';
+              result.style.display = 'block';
+            });
+          </script>
+    </body>
 </html>
